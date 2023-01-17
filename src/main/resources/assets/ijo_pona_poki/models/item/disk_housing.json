@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "ijo_pona_poki:item/disk_housing"
+  }
+}

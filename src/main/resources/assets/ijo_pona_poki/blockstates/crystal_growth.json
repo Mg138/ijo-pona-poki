@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "working=false": {
+      "model": "ijo_pona_poki:block/crystal_growth"
+    },
+    "working=true": {
+      "model": "ijo_pona_poki:block/crystal_growth_on"
+    }
+  }
+}

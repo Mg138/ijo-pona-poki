@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ijo_pona_poki:disk_housing"
+    },
+    {
+      "item": "ae2:cell_component_4k"
+    }
+  ],
+  "result": {
+    "item": "ijo_pona_poki:disk_drive_4k"
+  }
+}

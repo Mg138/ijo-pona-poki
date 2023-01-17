@@ -1,0 +1,36 @@
+[versions]
+kotlin = "1.8.0"
+
+minecraft = "1.19.2"
+qfapi = "4.0.0-beta.26+0.72.0-1.19.2"
+qkl = "1.0.2+kt.1.8.0+flk.1.9.0"
+loader = "0.17.8"
+mappings = "1.19.2+build.21"
+loom = "1.+"
+
+ae2 = "12.9.2"
+cloth_config = "6.0.42"
+wthit = "quilt-5.13.4"
+emi = "0.6.0+1.19.2"
+
+[libraries]
+minecraft = { module = "com.mojang:minecraft", version.ref = "minecraft" }
+qfapi = { module = "org.quiltmc.quilted-fabric-api:quilted-fabric-api", version.ref = "qfapi" }
+qfapi_deprecated = { module = "org.quiltmc.quilted-fabric-api:quilted-fabric-api-deprecated", version.ref = "qfapi" }
+
+qkl = { module = "org.quiltmc.quilt-kotlin-libraries:quilt-kotlin-libraries", version.ref = "qkl" }
+quilt_loader = { module = "org.quiltmc:quilt-loader", version.ref = "loader" }
+quilt_mappings = { module = "org.quiltmc:quilt-mappings", version.ref = "mappings" }
+
+ae2 = { module = "appeng:appliedenergistics2-fabric", version.ref = "ae2" }
+cloth_config = { module = "me.shedaniel.cloth:cloth-config-fabric", version.ref = "cloth_config" }
+wthit = { module = "mcp.mobius.waila:wthit", version.ref = "wthit" }
+wthit_api = { module = "mcp.mobius.waila:wthit-api", version.ref = "wthit" }
+emi = { module = "dev.emi:emi", version.ref = "emi" }
+
+[bundles]
+quilted_fabric_api = ["qfapi", "qfapi_deprecated"]
+
+[plugins]
+kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+quilt_loom = { id = "org.quiltmc.loom", version.ref = "loom" }

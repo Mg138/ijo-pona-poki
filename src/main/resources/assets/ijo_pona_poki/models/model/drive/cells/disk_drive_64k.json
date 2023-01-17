@@ -1,0 +1,6 @@
+{
+  "parent": "ae2:block/drive/drive_cell",
+  "textures": {
+    "cell": "ijo_pona_poki:model/drive/cells/disk_1k"
+  }
+}

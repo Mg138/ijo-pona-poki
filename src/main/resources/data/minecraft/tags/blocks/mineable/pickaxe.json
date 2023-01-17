@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "ijo_pona_poki:advanced_inscriber",
+      "required": false
+    },
+    {
+      "id": "ijo_pona_poki:crystal_growth",
+      "required": false
+    }
+  ]
+}

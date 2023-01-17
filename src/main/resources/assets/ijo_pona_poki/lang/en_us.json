@@ -1,0 +1,24 @@
+{
+  "itemGroup.ijo_pona_poki.item_group": "ijo pona poki",
+
+  "item.ijo_pona_poki.disk_housing": "ME DISK Housing",
+  "item.ijo_pona_poki.disk_drive_1k": "1k ME DISK Drive",
+  "item.ijo_pona_poki.disk_drive_4k": "4k ME DISK Drive",
+  "item.ijo_pona_poki.disk_drive_16k": "16k ME DISK Drive",
+  "item.ijo_pona_poki.disk_drive_64k": "64k ME DISK Drive",
+  "item.ijo_pona_poki.portable_disk_1k": "1k Portable DISK",
+  "item.ijo_pona_poki.portable_disk_4k": "4k Portable DISK",
+  "item.ijo_pona_poki.portable_disk_16k": "16k Portable DISK",
+  "item.ijo_pona_poki.portable_disk_64k": "64k Portable DISK",
+
+  "block.ijo_pona_poki.advanced_inscriber": "Advanced Inscriber",
+  "gui.ijo_pona_poki.advanced_inscriber": "Advanced Inscriber",
+  "block.ijo_pona_poki.crystal_growth": "Crystal Growth Chamber",
+  "gui.ijo_pona_poki.crystal_growth": "Crystal Growth Chamber",
+
+  "command.ijo_pona_poki.recover_success": "%s has recovered a DISK Drive with the UUID of [%s].",
+  "command.ijo_pona_poki.recover_fail": "Failed to recover DISK Drive: UUID [%s] does not exist.",
+  "command.ijo_pona_poki.getuuid_success": "UUID of given DISK is: [%s]",
+  "command.ijo_pona_poki.getuuid_fail_nouuid": "Error, given DISK is empty/no uuid found.",
+  "command.ijo_pona_poki.getuuid_fail_notdisk": "Error, given item is not a DISK."
+}
