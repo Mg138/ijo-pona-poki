@@ -3,7 +3,7 @@
   "includes": ["common/common.json", "common/player_inventory.json"],
   "background": {
     "texture": "guis/crystal_growth.png",
-    "srcRect": [0, 0, 176, 166]
+    "srcRect": [0, 0, 182, 166]
   },
   "slots": {
     "STORAGE": {
@@ -21,6 +21,18 @@
         "left": 8,
         "top": 6
       }
+    }
+  },
+  "images": {
+    "progressBar": {
+      "texture": "guis/inscriber.png",
+      "srcRect": [135, 177, 6, 18]
+    }
+  },
+  "widgets": {
+    "progressBar": {
+      "left": 173,
+      "top": 16
     }
   }
 }

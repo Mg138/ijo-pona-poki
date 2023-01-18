@@ -3,7 +3,6 @@ package io.github.mg138.ijo_pona_poki
 import appeng.client.render.model.AutoRotatingBakedModel
 import appeng.hooks.ModelsReloadCallback
 import io.github.mg138.ijo_pona_poki.blocks.AdvancedInscriber
-import io.github.mg138.ijo_pona_poki.blocks.AdvancedInscriber.ADVANCED_INSCRIBER_ID
 import io.github.mg138.ijo_pona_poki.blocks.AdvancedInscriber.advanced_inscriber
 import io.github.mg138.ijo_pona_poki.blocks.AdvancedInscriberTESR
 import io.github.mg138.ijo_pona_poki.disk.DISKCellHandler
@@ -19,7 +18,7 @@ import org.quiltmc.qsl.base.api.entrypoint.client.ClientModInitializer
 object IjoPonaPokiClient : ClientModInitializer {
     override fun onInitializeClient(mod: ModContainer?) {
         BlockEntityRendererFactories.register(
-            AdvancedInscriber.ADVANCED_INSCRIBER_BE,
+            AdvancedInscriber.BLOCK_ENTITY,
             ::AdvancedInscriberTESR
         )
 

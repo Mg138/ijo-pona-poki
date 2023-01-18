@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "ijo_pona_poki:block/crystal_growth/top",
-    "side": "ijo_pona_poki:block/crystal_growth/side_on"
-  }
-}
