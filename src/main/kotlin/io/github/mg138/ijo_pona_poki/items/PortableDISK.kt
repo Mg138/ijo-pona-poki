@@ -1,11 +1,10 @@
 package io.github.mg138.ijo_pona_poki.items
 
-import appeng.api.storage.StorageCells
 import appeng.api.upgrades.IUpgradeInventory
 import appeng.items.tools.powered.AbstractPortableCell
 import io.github.mg138.ijo_pona_poki.disk.DISKCellHandler
 import io.github.mg138.ijo_pona_poki.disk.DISKCellItem
-import io.github.mg138.ijo_pona_poki.items.DISKDrive.Companion.DISK_SETTINGS
+import io.github.mg138.ijo_pona_poki.items.DISKDrives.diskSettings
 import net.minecraft.client.item.TooltipContext
 import net.minecraft.item.ItemStack
 import net.minecraft.screen.ScreenHandlerType
@@ -18,7 +17,7 @@ class PortableDISK(
     override val idleDrain: Double,
     private val recipeId: Identifier,
     menuType: ScreenHandlerType<*>,
-) : AbstractPortableCell(menuType, DISK_SETTINGS), DISKCellItem {
+) : AbstractPortableCell(menuType, diskSettings()), DISKCellItem {
     override fun getChargeRate(p0: ItemStack?): Double {
         return 80.0 // default of normal ae2 portal drives
     }
