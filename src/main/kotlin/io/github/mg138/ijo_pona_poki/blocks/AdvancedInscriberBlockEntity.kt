@@ -259,9 +259,9 @@ class AdvancedInscriberBlockEntity(
     }
 
     override fun tickingRequest(node: IGridNode, ticksSinceLastCall: Int): TickRateModulation {
-        if (this.hasWork()) {
-            this.isSmash = false
+        this.isSmash = false
 
+        if (this.hasWork()) {
             this.mainNode.ifPresent { grid ->
                 val eg = grid.energyService
                 var src: IEnergySource = this
