@@ -1,6 +1,5 @@
 package io.github.mg138.ijo_pona_poki.blocks
 
-import appeng.api.util.IOrientable
 import appeng.block.AEBaseEntityBlock
 import appeng.core.definitions.AEBlocks
 import appeng.menu.MenuOpener
@@ -12,7 +11,6 @@ import net.minecraft.util.ActionResult
 import net.minecraft.util.Hand
 import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.BlockPos
-import net.minecraft.world.BlockView
 import net.minecraft.world.World
 import org.quiltmc.qsl.block.extensions.api.QuiltBlockSettings
 
@@ -29,7 +27,7 @@ object AdvancedInscriberBlock : AEBaseEntityBlock<AdvancedInscriberBlockEntity>(
         if (!InteractionUtil.isInAlternateUseMode(playerEntity)) {
             this.getBlockEntity(world, pos)?.let { target ->
                 if (!world.isClient()) {
-                    MenuOpener.open(AdvancedInscriber.ADVANCED_INSCRIBER_SCREEN_HANDLER, playerEntity, MenuLocators.forBlockEntity(target))
+                    MenuOpener.open(AdvancedInscriber.SCREEN_HANDLER, playerEntity, MenuLocators.forBlockEntity(target))
                 }
                 return ActionResult.success(world.isClient())
             }

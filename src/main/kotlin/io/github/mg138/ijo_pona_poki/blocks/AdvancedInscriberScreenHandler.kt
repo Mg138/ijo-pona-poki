@@ -16,8 +16,8 @@ import net.minecraft.item.ItemStack
 import net.minecraft.screen.slot.Slot
 
 class AdvancedInscriberScreenHandler(id: Int, playerInventory: PlayerInventory, host: AdvancedInscriberBlockEntity)
-    : UpgradeableMenu<AdvancedInscriberBlockEntity>(AdvancedInscriber.ADVANCED_INSCRIBER_SCREEN_HANDLER, id, playerInventory, host),
-      IProgressProvider {
+    : UpgradeableMenu<AdvancedInscriberBlockEntity>(AdvancedInscriber.SCREEN_HANDLER, id, playerInventory, host),
+        IProgressProvider {
     private val top: Slot
     private val middle: Slot
     private val bottom: Slot

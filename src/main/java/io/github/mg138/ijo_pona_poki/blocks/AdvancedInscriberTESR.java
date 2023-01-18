@@ -39,12 +39,13 @@ import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Quaternion;
 import net.minecraft.util.random.RandomGenerator;
+import org.quiltmc.loader.api.minecraft.ClientOnly;
 
 /**
  * Renders the dynamic parts of an inscriber (the presses, the animation and the item being smashed)
  */
+@ClientOnly
 public final class AdvancedInscriberTESR implements BlockEntityRenderer<AdvancedInscriberBlockEntity> {
-
     private static final float ITEM_RENDER_SCALE = 1.0f / 1.2f;
 
     private static final SpriteIdentifier TEXTURE_INSIDE = new SpriteIdentifier(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE,
@@ -69,6 +70,7 @@ public final class AdvancedInscriberTESR implements BlockEntityRenderer<Advanced
 
         long absoluteProgress = 0;
 
+        System.out.println(blockEntity.isSmash());
         if (blockEntity.isSmash()) {
             final long currentTime = System.currentTimeMillis();
             absoluteProgress = currentTime - blockEntity.getClientStart();

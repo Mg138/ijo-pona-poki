@@ -5,7 +5,9 @@ import appeng.client.gui.style.ScreenStyle
 import appeng.client.gui.widgets.ProgressBar
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.text.Text
+import org.quiltmc.loader.api.minecraft.ClientOnly
 
+@ClientOnly
 class AdvancedInscriberScreen(
     handler: AdvancedInscriberScreenHandler,
     playerInventory: PlayerInventory,

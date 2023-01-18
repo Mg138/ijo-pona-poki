@@ -36,14 +36,18 @@ import net.minecraft.world.World
 import java.util.EnumSet.*
 
 
+/**
+ * Largely copied from AE2's implementation.
+ */
 class AdvancedInscriberBlockEntity(
     pos: BlockPos,
     blockState: BlockState,
-) : AENetworkPowerBlockEntity(AdvancedInscriber.ADVANCED_INSCRIBER_BE, pos, blockState), IGridTickable, IUpgradeableObject {
-    private val maxProcessingTime = 100
+) : AENetworkPowerBlockEntity(AdvancedInscriber.BLOCK_ENTITY, pos, blockState),
+    IGridTickable,
+    IUpgradeableObject {
     private var processingTime = 0
 
-    fun getMaxProcessingTime() = this.maxProcessingTime
+    fun getMaxProcessingTime() = 100
     fun getProcessingTime() = this.processingTime
 
     var clientStart: Long = 0
@@ -72,35 +76,6 @@ class AdvancedInscriberBlockEntity(
 
     override fun getInternalInventory() = this.inv
 
-    private class ItemHandlerFilter(private val be: AdvancedInscriberBlockEntity): IAEItemFilter {
-        override fun allowExtract(inv: InternalInventory, slot: Int, amount: Int): Boolean {
-            return if (this.be.isSmash) {
-                false
-            } else {
-                inv === this.be.topItemHandler || inv === this.be.bottomItemHandler || slot == 1
-            }
-        }
-
-        override fun allowInsert(inv: InternalInventory, slot: Int, stack: ItemStack): Boolean {
-            return when {
-                slot == 1 -> {
-                    false
-                }
-                this.be.isSmash -> {
-                    false
-                }
-                inv !== this.be.topItemHandler && inv !== this.be.bottomItemHandler -> {
-                    true
-                }
-                AEItems.NAME_PRESS.isSameAs(stack) -> {
-                    true
-                }
-                else -> {
-                    InscriberRecipes.isValidOptionalIngredient(this.be.getWorld(), stack)
-                }
-            }
-        }
-    }
 
     private val topItemHandlerExtern: InternalInventory
     private val bottomItemHandlerExtern: InternalInventory
@@ -115,7 +90,38 @@ class AdvancedInscriberBlockEntity(
 
         this.upgrades = UpgradeInventories.forMachine(AdvancedInscriberBlock, 5) { this.saveChanges() }
 
-        val filter = ItemHandlerFilter(this)
+        val filter = object : IAEItemFilter {
+            private val be = this@AdvancedInscriberBlockEntity
+
+            override fun allowExtract(inv: InternalInventory, slot: Int, amount: Int): Boolean {
+                return if (this.be.isSmash) {
+                    false
+                } else {
+                    inv === this.be.topItemHandler || inv === this.be.bottomItemHandler || slot == 1
+                }
+            }
+
+            override fun allowInsert(inv: InternalInventory, slot: Int, stack: ItemStack): Boolean {
+                return when {
+                    slot == 1 -> {
+                        false
+                    }
+                    this.be.isSmash -> {
+                        false
+                    }
+                    inv !== this.be.topItemHandler && inv !== this.be.bottomItemHandler -> {
+                        true
+                    }
+                    AEItems.NAME_PRESS.isSameAs(stack) -> {
+                        true
+                    }
+                    else -> {
+                        InscriberRecipes.isValidOptionalIngredient(this.be.getWorld(), stack)
+                    }
+                }
+            }
+        }
+
         this.topItemHandlerExtern = FilteredInternalInventory(this.topItemHandler, filter)
         this.bottomItemHandlerExtern = FilteredInternalInventory(this.bottomItemHandler, filter)
         this.sideItemHandlerExtern = FilteredInternalInventory(this.sideItemHandler, filter)
@@ -170,10 +176,7 @@ class AdvancedInscriberBlockEntity(
     override fun readFromStream(data: PacketByteBuf): Boolean {
         val c = super.readFromStream(data)
 
-        val oldSmash = this.isSmash
-        val newSmash = data.readBoolean()
-
-        if (oldSmash != newSmash && newSmash) {
+        if (data.readBoolean()) {
             this.isSmash = true
         }
 
@@ -228,7 +231,7 @@ class AdvancedInscriberBlockEntity(
     private var cachedTask: InscriberRecipe? = null
 
     override fun onChangeInventory(inv: InternalInventory, slot: Int) {
-        if (slot == 0) {
+        if (this.internalInventory.isEmpty) {
             this.processingTime = 0
         }
         if (!this.isSmash) {
@@ -281,26 +284,28 @@ class AdvancedInscriberBlockEntity(
                 }
             }
 
-            if (this.processingTime > this.maxProcessingTime) {
-                this.processingTime = this.maxProcessingTime
+            if (this.getProcessingTime() > this.getMaxProcessingTime()) {
+                this.processingTime = this.getMaxProcessingTime()
 
                 this.getTask()?.let { task ->
                     val output = task.output.copy()
 
                     if (this.sideItemHandler.insertItem(1, output, true).isEmpty) {
-                        this.sideItemHandler.insertItem(1, output, false)
+                        this.isSmash = true
                         this.processingTime = 0
+
+                        this.sideItemHandler.insertItem(1, output, false)
 
                         if (task.processType == InscriberProcessType.PRESS) {
                             this.topItemHandler.extractItem(0, 1, false)
                             this.bottomItemHandler.extractItem(0, 1, false)
                         }
                         this.sideItemHandler.extractItem(0, 1, false)
+
                     }
                 }
             }
         }
-
 
         if (this.sideItemHandler.getStackInSlot(1).item != Items.AIR) {
             val output = this.sideItemHandler.getStackInSlot(1)
