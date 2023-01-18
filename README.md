@@ -1,5 +1,9 @@
 # ijo-pona-poki 
 
+![preview.png](https://github.com/Mg138/ijo-pona-poki/blob/main/preview.png?raw=true)
+
+
+
 Complete rewrite of the mod `AE2Things`, a port of `ae2stuff`.
 
 Uses **Quilt**.
