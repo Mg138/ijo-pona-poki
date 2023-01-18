@@ -260,6 +260,8 @@ class AdvancedInscriberBlockEntity(
 
     override fun tickingRequest(node: IGridNode, ticksSinceLastCall: Int): TickRateModulation {
         if (this.hasWork()) {
+            this.isSmash = false
+
             this.mainNode.ifPresent { grid ->
                 val eg = grid.energyService
                 var src: IEnergySource = this
@@ -301,7 +303,6 @@ class AdvancedInscriberBlockEntity(
                             this.bottomItemHandler.extractItem(0, 1, false)
                         }
                         this.sideItemHandler.extractItem(0, 1, false)
-
                     }
                 }
             }

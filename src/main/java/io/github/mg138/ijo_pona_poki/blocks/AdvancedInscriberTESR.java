@@ -70,7 +70,6 @@ public final class AdvancedInscriberTESR implements BlockEntityRenderer<Advanced
 
         long absoluteProgress = 0;
 
-        System.out.println(blockEntity.isSmash());
         if (blockEntity.isSmash()) {
             final long currentTime = System.currentTimeMillis();
             absoluteProgress = currentTime - blockEntity.getClientStart();
