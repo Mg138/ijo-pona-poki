@@ -95,15 +95,11 @@ dependencies {
     }
      */
 
-    modCompileOnly(libs.wthit.api) {
-        exclude(group = "net.fabricmc.fabric-api")
-    }
-
     modRuntimeOnly(libs.wthit) {
         exclude(group = "net.fabricmc.fabric-api")
     }
 
-    modImplementation(libs.emi)
+    modApi(libs.emi)
 }
 
 tasks {

@@ -34,6 +34,10 @@
       "client_init": {
         "adapter": "kotlin",
         "value": "io.github.mg138.ijo_pona_poki.IjoPonaPokiClient"
+      },
+      "emi": {
+        "adapter": "kotlin",
+        "value": "io.github.mg138.ijo_pona_poki.IjoPonaPokiEmiPlugin"
       }
     },
     "depends": [

@@ -41,9 +41,11 @@ Now acts as an easy one-block solution of growing Certus Quartz.
 
 However, there are some caveats.
 
-### Fortune Upgrades
+### ~~Fortune Upgrades~~
 
-An upgrade for the Crystal Growth Chamber, improves yields, but increases resource usage.
+~~An upgrade for the Crystal Growth Chamber, improves yields, but increases resource usage.~~
+
+Might work on this in the future.
 
 ### Advanced Inscriber
 
