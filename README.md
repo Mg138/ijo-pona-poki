@@ -1,5 +1,9 @@
 # ijo-pona-poki 
 
+[![modrinth](https://modrinth-utils.vercel.app/api/badge/versions?id=ijo-pona-poki)](https://modrinth.com/mod/ijo-pona-poki/)
+
+---
+
 ![preview.png](https://github.com/Mg138/ijo-pona-poki/blob/main/preview.png?raw=true)
 
 
