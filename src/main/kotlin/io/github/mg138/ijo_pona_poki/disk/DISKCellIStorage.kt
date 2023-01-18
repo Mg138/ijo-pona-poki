@@ -63,9 +63,9 @@ class DISKCellIStorage(val item: DISKCellItem, private val inventory: Inventory)
 
         if (keys.isEmpty()) return false
 
-        nbt.putString(io.github.mg138.ijo_pona_poki.disk.DISKCellIStorage.Companion.DISK_ID, id.toString())
-        nbt.put(io.github.mg138.ijo_pona_poki.disk.DISKCellIStorage.Companion.KEYS_TAG, keys)
-        nbt.putLongArray(io.github.mg138.ijo_pona_poki.disk.DISKCellIStorage.Companion.AMOUNTS_TAG, amounts.toLongArray())
+        nbt.putString(Companion.DISK_ID, id.toString())
+        nbt.put(Companion.KEYS_TAG, keys)
+        nbt.putLongArray(Companion.AMOUNTS_TAG, amounts.toLongArray())
 
         return true
     }
@@ -86,7 +86,7 @@ class DISKCellIStorage(val item: DISKCellItem, private val inventory: Inventory)
 
 
     fun insert(key: AEKey?, amount: Long, mode: Actionable): Long {
-        if (key !in io.github.mg138.ijo_pona_poki.disk.DISKCellIStorage.Companion.KEY_TYPE) return 0L
+        if (key !in Companion.KEY_TYPE) return 0L
 
         val spaceLeft = this.spaceLeft()
         val inserting = min(amount, spaceLeft)
@@ -100,7 +100,7 @@ class DISKCellIStorage(val item: DISKCellItem, private val inventory: Inventory)
     }
 
     fun extract(key: AEKey?, amount: Long, mode: Actionable): Long {
-        if (key !in io.github.mg138.ijo_pona_poki.disk.DISKCellIStorage.Companion.KEY_TYPE) return 0L
+        if (key !in Companion.KEY_TYPE) return 0L
 
         val present = this.inventory.getLong(key)
         if (present <= 0) {

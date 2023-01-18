@@ -3,14 +3,13 @@ package io.github.mg138.ijo_pona_poki.items
 import appeng.api.client.StorageCellModels
 import appeng.core.definitions.AEItems
 import appeng.menu.me.common.MEStorageMenu
-import io.github.mg138.ijo_pona_poki.IjoPonaPoki.DEFAULT_SETTINGS
+import io.github.mg138.ijo_pona_poki.IjoPonaPoki.defaultSettings
 import io.github.mg138.ijo_pona_poki.IjoPonaPoki.id
 import net.minecraft.item.Item
 import net.minecraft.util.registry.Registry
+import org.quiltmc.qsl.item.setting.api.QuiltItemSettings
 
 
-
-@Suppress("unused")
 object DISKDrives {
     private fun String.model() = id("model/drive/cells/$this")
 
@@ -23,7 +22,11 @@ object DISKDrives {
         return this.item(name, item)
     }
 
-    val DISK_HOUSING = this.item("disk_housing", Item(DEFAULT_SETTINGS))
+    val DISK_HOUSING = this.item("disk_housing", Item(defaultSettings()))
+
+    fun diskSettings(): QuiltItemSettings = defaultSettings()
+        .maxCount(1)
+        .fireproof()
 
     private fun diskId(kilo: String) = "disk_drive_$kilo"
     private fun portableDiskId(kilo: String) = "portable_disk_$kilo"

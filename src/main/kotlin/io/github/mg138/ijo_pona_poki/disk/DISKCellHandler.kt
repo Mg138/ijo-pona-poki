@@ -4,6 +4,7 @@ import appeng.api.storage.cells.CellState
 import appeng.api.storage.cells.ICellHandler
 import appeng.api.storage.cells.ISaveProvider
 import appeng.core.localization.Tooltips
+import io.github.mg138.ijo_pona_poki.IjoPonaPoki
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.text.Text
@@ -39,7 +40,7 @@ object DISKCellHandler: ICellHandler {
         }
     }
 
-    fun getOrPutUuid(itemStack: ItemStack): UUID {
+    private fun getOrPutUuid(itemStack: ItemStack): UUID {
         val nbt = itemStack.orCreateNbt
 
         if (!nbt.containsUuid(this.DISK_UUID)) {
@@ -52,7 +53,7 @@ object DISKCellHandler: ICellHandler {
     fun getCellStorage(item: DISKCellItem, uuid: UUID) =
         this.storages.getOrPut(uuid) { DISKCellIStorage(item, emptyInv()) }
 
-    fun asDiskCell(itemStack: ItemStack?): DISKCellItem? {
+    private fun asDiskCell(itemStack: ItemStack?): DISKCellItem? {
         return itemStack?.item as? DISKCellItem
     }
 
@@ -76,6 +77,9 @@ object DISKCellHandler: ICellHandler {
     }
 
     fun addCellInfo(itemStack: ItemStack, tooltip: MutableList<Text>) {
+        tooltip.add(Text.translatable("disk.${IjoPonaPoki.MOD_ID}.desc").styled { it.withColor(Formatting.AQUA).withItalic(true) })
+        tooltip.add(Text.empty())
+
         val diskItem = this.asDiskCell(itemStack) ?: return
         val capacity = diskItem.capacity()
 

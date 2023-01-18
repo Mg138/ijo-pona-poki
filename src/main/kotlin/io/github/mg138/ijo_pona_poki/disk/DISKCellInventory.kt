@@ -17,13 +17,12 @@ class DISKCellInventory(
     private val capacity: Long = this.item.capacity()
 
     private fun inventory() = DISKCellHandler.getCellStorage(this.item, this.uuid)
-    fun availableBytes() = this.capacity
     fun usedBytes() = this.inventory().usedBytes()
 
     override fun getStatus() =
         when (this.usedBytes()) {
             0L -> CellState.EMPTY
-            this.availableBytes() -> CellState.FULL
+            this.capacity -> CellState.FULL
             else -> CellState.NOT_EMPTY
         }
     override fun getDescription(): Text = this.item.asItem().name

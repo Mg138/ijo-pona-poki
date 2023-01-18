@@ -2,10 +2,10 @@ package io.github.mg138.ijo_pona_poki.items
 
 import appeng.hooks.AEToolItem
 import appeng.util.InteractionUtil
-import io.github.mg138.ijo_pona_poki.IjoPonaPoki.DEFAULT_SETTINGS
 import io.github.mg138.ijo_pona_poki.disk.DISKCellHandler
 import io.github.mg138.ijo_pona_poki.disk.DISKCellHandler.getCellInventory
 import io.github.mg138.ijo_pona_poki.disk.DISKCellItem
+import io.github.mg138.ijo_pona_poki.items.DISKDrives.diskSettings
 import net.minecraft.client.item.TooltipContext
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.Item
@@ -17,7 +17,6 @@ import net.minecraft.util.ActionResult
 import net.minecraft.util.Hand
 import net.minecraft.util.TypedActionResult
 import net.minecraft.world.World
-import org.quiltmc.qsl.item.setting.api.QuiltItemSettings
 
 
 class DISKDrive(
@@ -25,12 +24,8 @@ class DISKDrive(
     private val housingItem: ItemConvertible,
     private val capacity: Long,
     override val idleDrain: Double,
-) : Item(this.DISK_SETTINGS), DISKCellItem, AEToolItem {
+) : Item(diskSettings()), DISKCellItem, AEToolItem {
     companion object {
-        val DISK_SETTINGS: QuiltItemSettings = DEFAULT_SETTINGS
-            .maxCount(1)
-            .fireproof()
-
         fun disassembleDrive(
             drive: DISKCellItem,
             coreItem: ItemConvertible,
