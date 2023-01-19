@@ -2,7 +2,6 @@ package io.github.mg138.ijo_pona_poki.items
 
 import appeng.api.upgrades.IUpgradeInventory
 import appeng.items.tools.powered.AbstractPortableCell
-import io.github.mg138.ijo_pona_poki.disk.DISKCellHandler
 import io.github.mg138.ijo_pona_poki.disk.DISKCellItem
 import io.github.mg138.ijo_pona_poki.items.DISKDrives.diskSettings
 import net.minecraft.client.item.TooltipContext
@@ -11,6 +10,7 @@ import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.text.Text
 import net.minecraft.util.Identifier
 import net.minecraft.world.World
+import org.quiltmc.loader.api.minecraft.ClientOnly
 
 class PortableDISK(
     private val capacity: Long,
@@ -30,6 +30,7 @@ class PortableDISK(
         return super<DISKCellItem>.getUpgrades(stack)
     }
 
+    @ClientOnly
     override fun appendTooltip(
         itemStack: ItemStack,
         world: World?,
@@ -37,7 +38,6 @@ class PortableDISK(
         advancedTooltips: TooltipContext?
     ) {
         super.appendTooltip(itemStack, world, tooltip, advancedTooltips)
-
-        DISKCellHandler.addCellInfo(itemStack, tooltip)
+        DISKDrive.addDiskInfo(this, itemStack, tooltip)
     }
 }

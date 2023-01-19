@@ -3,17 +3,13 @@ package io.github.mg138.ijo_pona_poki.disk
 import appeng.api.storage.cells.CellState
 import appeng.api.storage.cells.ICellHandler
 import appeng.api.storage.cells.ISaveProvider
-import appeng.core.localization.Tooltips
-import io.github.mg138.ijo_pona_poki.IjoPonaPoki
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NbtCompound
-import net.minecraft.text.Text
-import net.minecraft.util.Formatting
 import java.util.*
 
 object DISKCellHandler: ICellHandler {
     private val storages: MutableMap<UUID, DISKCellIStorage> = mutableMapOf()
-    private const val DISK_UUID = "disk_uuid"
+    const val DISK_UUID = "disk_uuid"
 
     fun readFromNbt(nbt: NbtCompound) {
         this.storages.clear()
@@ -62,7 +58,7 @@ object DISKCellHandler: ICellHandler {
     override fun getCellInventory(itemStack: ItemStack, host: ISaveProvider?): DISKCellInventory? {
         val diskItem = this.asDiskCell(itemStack) ?: return null
 
-        return DISKCellInventory(diskItem, this.getOrPutUuid(itemStack))
+        return DISKCellInventory(diskItem, this.getOrPutUuid(itemStack), itemStack)
     }
 
     fun getDiskColor(itemStack: ItemStack, tintIndex: Int): Int {
@@ -74,41 +70,5 @@ object DISKCellHandler: ICellHandler {
         } else {
             0xFFFFFF
         }
-    }
-
-    fun addCellInfo(itemStack: ItemStack, tooltip: MutableList<Text>) {
-        tooltip.add(Text.translatable("disk.${IjoPonaPoki.MOD_ID}.desc").styled { it.withColor(Formatting.AQUA).withItalic(true) })
-        tooltip.add(Text.empty())
-
-        val item = this.asDiskCell(itemStack) ?: return
-        val capacity = item.capacity()
-
-        val nbt = itemStack.orCreateNbt
-        if (nbt.containsUuid(this.DISK_UUID)) {
-            val uuid = nbt.getUuid(this.DISK_UUID)
-            val storage = this.getCellStorage(item, uuid)
-            val usedBytes = storage.usedBytes()
-
-            tooltip.add(Tooltips.bytesUsed(usedBytes, capacity))
-            tooltip.add(Text.literal(uuid.toString()).styled { it.withColor(Formatting.DARK_GRAY) })
-        } else {
-            tooltip.add(Tooltips.bytesUsed(0, capacity))
-        }
-
-        // TODO needed?
-        /*
-        if (inventory.isPreformatted()) {
-            val list =
-                (if (inventory.getPartitionListMode() === IncludeExclude.WHITELIST) GuiText.Included else GuiText.Excluded)
-                    .text()
-            if (inventory.isFuzzy()) {
-                lines.add(GuiText.Partitioned.withSuffix(" - ").append(list).append(" ").append(GuiText.Fuzzy.text()))
-            } else {
-                lines.add(
-                    GuiText.Partitioned.withSuffix(" - ").append(list).append(" ").append(GuiText.Precise.text())
-                )
-            }
-        }
-         */
     }
 }
