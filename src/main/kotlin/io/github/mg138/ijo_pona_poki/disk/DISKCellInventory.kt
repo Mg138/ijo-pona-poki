@@ -12,7 +12,7 @@ import java.util.UUID
 
 class DISKCellInventory(
     val item: DISKCellItem,
-    val uuid: UUID,
+    private val uuid: UUID,
 ) : StorageCell {
     private val capacity: Long = this.item.capacity()
 

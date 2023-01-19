@@ -1,5 +1,6 @@
 package io.github.mg138.ijo_pona_poki.items
 
+import appeng.api.storage.cells.CellState
 import appeng.hooks.AEToolItem
 import appeng.util.InteractionUtil
 import io.github.mg138.ijo_pona_poki.disk.DISKCellHandler
@@ -39,7 +40,7 @@ class DISKDrive(
             val playerInv = player.inventory ?: return false
             val inventory = getCellInventory(stack, null) ?: return false
 
-            if (inventory.availableStacks.isEmpty) {
+            if (inventory.status == CellState.EMPTY && inventory.usedBytes() == 0L) {
                 playerInv.setStack(playerInv.selectedSlot, ItemStack.EMPTY)
                 playerInv.offerOrDrop(ItemStack(coreItem))
                 drive.getUpgrades(stack).forEach { playerInv.offerOrDrop(it) }

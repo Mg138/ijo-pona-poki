@@ -80,13 +80,14 @@ object DISKCellHandler: ICellHandler {
         tooltip.add(Text.translatable("disk.${IjoPonaPoki.MOD_ID}.desc").styled { it.withColor(Formatting.AQUA).withItalic(true) })
         tooltip.add(Text.empty())
 
-        val diskItem = this.asDiskCell(itemStack) ?: return
-        val capacity = diskItem.capacity()
+        val item = this.asDiskCell(itemStack) ?: return
+        val capacity = item.capacity()
 
-        if (itemStack.orCreateNbt.containsUuid(this.DISK_UUID)) {
-            val cell = this.getCellInventory(itemStack, null) ?: return
-            val uuid = cell.uuid
-            val usedBytes = cell.usedBytes()
+        val nbt = itemStack.orCreateNbt
+        if (nbt.containsUuid(this.DISK_UUID)) {
+            val uuid = nbt.getUuid(this.DISK_UUID)
+            val storage = this.getCellStorage(item, uuid)
+            val usedBytes = storage.usedBytes()
 
             tooltip.add(Tooltips.bytesUsed(usedBytes, capacity))
             tooltip.add(Text.literal(uuid.toString()).styled { it.withColor(Formatting.DARK_GRAY) })
