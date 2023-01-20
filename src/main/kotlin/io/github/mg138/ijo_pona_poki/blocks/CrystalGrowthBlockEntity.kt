@@ -70,7 +70,7 @@ class CrystalGrowthBlockEntity(
 
     private var processingTime = 0
 
-    fun getMaxProcessingTime() = 100
+    fun getMaxProcessingTime() = 1000
     fun getProcessingTime() = this.processingTime
 
     override fun onReady() {
@@ -285,7 +285,7 @@ class CrystalGrowthBlockEntity(
 
                 val speedFactor = 1 + this.upgrades.getInstalledUpgrades(AEItems.SPEED_CARD)
 
-                val powerConsumption = 5 * speedFactor * growing
+                val powerConsumption = 20 * speedFactor * growing
                 val powerThreshold = powerConsumption - 0.01
 
                 var powerReq = this.extractAEPower(powerConsumption.toDouble(), Actionable.SIMULATE, PowerMultiplier.CONFIG)
