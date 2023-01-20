@@ -97,7 +97,6 @@ class DISKDrive(
         advancedTooltips: TooltipContext?
     ) {
         super.appendTooltip(itemStack, world, tooltip, advancedTooltips)
-        println(itemStack.orCreateNbt.toString())
 
         Companion.addDiskInfo(this, itemStack, tooltip)
     }
