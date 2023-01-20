@@ -40,10 +40,20 @@ class DISKCellIStorage(val item: DISKCellItem, private val inventory: Inventory)
             val amounts = nbt.get(this.AMOUNTS_TAG)?.let { (it as? NbtLongArray)?.longArray } ?: return DISKCellIStorage(item, inv)
 
             keys
-                .mapNotNull { it as? NbtCompound }
-                .mapNotNull { this.KEY_TYPE.loadKeyFromTag(it) }
+                .map { it as? NbtCompound }
+                .map {
+                    try {
+                        this.KEY_TYPE.loadKeyFromTag(it)
+                    } catch (e: Exception) {
+                        null
+                    }
+                }
                 .withIndex()
-                .forEach { (index, key) -> inv[key] = amounts[index] }
+                .forEach { (index, k) ->
+                    k?.let { key ->
+                        inv[key] = amounts[index]
+                    }
+                }
 
             return DISKCellIStorage(item, inv)
         }
