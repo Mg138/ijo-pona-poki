@@ -1,0 +1,21 @@
+{
+  "itemGroup.ae2shit.item_group": "ijo pona poki",
+
+  "item.ae2shit.disk_housing": "ME DISK Housing",
+  "item.ae2shit.disk_drive_1k": "1k ME DISK Drive",
+  "item.ae2shit.disk_drive_4k": "4k ME DISK Drive",
+  "item.ae2shit.disk_drive_16k": "16k ME DISK Drive",
+  "item.ae2shit.disk_drive_64k": "64k ME DISK Drive",
+  "item.ae2shit.portable_disk_1k": "1k Portable DISK",
+  "item.ae2shit.portable_disk_4k": "4k Portable DISK",
+  "item.ae2shit.portable_disk_16k": "16k Portable DISK",
+  "item.ae2shit.portable_disk_64k": "64k Portable DISK",
+
+  "block.ae2shit.advanced_inscriber": "Advanced Inscriber",
+  "gui.ae2shit.advanced_inscriber": "Advanced Inscriber",
+  "block.ae2shit.crystal_growth": "Crystal Growth Chamber",
+  "gui.ae2shit.crystal_growth": "Crystal Growth Chamber",
+  "emi.category.ae2shit.crystal_growth": "Crystal Growth Chamber",
+
+  "disk.ae2shit.desc": "Deep Item Storage disK - Storage for Dummies"
+}

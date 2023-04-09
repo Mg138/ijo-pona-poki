@@ -2,10 +2,10 @@
   "schema_version": 1,
   "quilt_loader": {
     "group": "io.github.mg138",
-    "id": "ijo_pona_poki",
+    "id": "ae2shit",
     "version": "${version}",
     "metadata": {
-      "name": "ijo pona poki (AE2Things rewrite)",
+      "name": "ae2shit (AE2Things rewrite)",
       "description": "Complete rewrite of the fabric mod AE2Things.",
       "contributors": {
         "Madeline Sparkles": "Owner"
@@ -15,29 +15,29 @@
         "issues": "https://github.com/Mg138/ijo-pona-poki/issues",
         "sources": "https://github.com/Mg138/ijo-pona-poki/"
       },
-      "icon": "assets/ijo_pona_poki/icon.png"
+      "icon": "assets/ae2shit/icon.png"
     },
     "intermediate_mappings": "net.fabricmc:intermediary",
     "entrypoints": {
       "ae2": {
         "adapter": "kotlin",
-        "value": "io.github.mg138.ijo_pona_poki.IjoPonaPokiAE2"
+        "value": "io.github.mg138.ae2shit.AE2ShitAE2"
       },
       "ae2:client": {
         "adapter": "kotlin",
-        "value": "io.github.mg138.ijo_pona_poki.IjoPonaPokiAE2Client"
+        "value": "io.github.mg138.ae2shit.AE2ShitAE2Client"
       },
       "init": {
         "adapter": "kotlin",
-        "value": "io.github.mg138.ijo_pona_poki.IjoPonaPoki"
+        "value": "io.github.mg138.ae2shit.AE2Shit"
       },
       "client_init": {
         "adapter": "kotlin",
-        "value": "io.github.mg138.ijo_pona_poki.IjoPonaPokiClient"
+        "value": "io.github.mg138.ae2shit.AE2ShitClient"
       },
       "emi": {
         "adapter": "kotlin",
-        "value": "io.github.mg138.ijo_pona_poki.IjoPonaPokiEmiPlugin"
+        "value": "io.github.mg138.ae2shit.AE2ShitEmiPlugin"
       }
     },
     "depends": [

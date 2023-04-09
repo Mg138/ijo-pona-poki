@@ -2,11 +2,11 @@
   "replace": false,
   "values": [
     {
-      "id": "ijo_pona_poki:advanced_inscriber",
+      "id": "ae2shit:advanced_inscriber",
       "required": false
     },
     {
-      "id": "ijo_pona_poki:crystal_growth",
+      "id": "ae2shit:crystal_growth",
       "required": false
     }
   ]

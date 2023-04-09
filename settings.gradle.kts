@@ -15,4 +15,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = "ijo-pona-poki"
+rootProject.name = "ae2shit"

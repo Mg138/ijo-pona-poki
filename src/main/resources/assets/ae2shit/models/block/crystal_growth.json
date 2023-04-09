@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "ae2shit:block/crystal_growth/top",
+    "side": "ae2shit:block/crystal_growth/side"
+  }
+}

@@ -1,4 +1,4 @@
-# ijo-pona-poki 
+# ae2shit 
 
 [![modrinth](https://modrinth-utils.vercel.app/api/badge/versions?id=ijo-pona-poki)](https://modrinth.com/mod/ijo-pona-poki/)
 
@@ -22,17 +22,7 @@ No offense, we wanted to contribute back to the codebase, too.
 
 ## What the heck even is this name
 
-The name is in [Toki Pona](https://tokipona.org/).
-
-The reason for this is that we couldn't find a name similar to `AE2Things` or `ae2stuff`, the only words left are like, `thingies` or `shit` and we'd rather not call it `ae2shit`.
-
-So we asked a person who knows of `Toki Pona` about naming, they told me a bit about how `Toki Pona` grammar works, and we ended up with `ijo pona poki`.
-
-- `ijo ` - thing
-- `pona` - good
-- `poki` - container/box/storage
-
-So, quite literally, "thing good storage," or good things about storage.
+The reason for this is that we couldn't find a name similar to `AE2Things` or `ae2stuff`, the only words left are like, `thingies` or `shit` and we'd rather call it `ae2shit`.
 
 ## Differences and Contents
 
