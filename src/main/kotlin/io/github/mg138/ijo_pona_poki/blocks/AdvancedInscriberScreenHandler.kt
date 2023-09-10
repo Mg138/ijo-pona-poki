@@ -1,6 +1,8 @@
 package io.github.mg138.ijo_pona_poki.blocks
 
+import appeng.api.config.YesNo
 import appeng.blockentity.misc.InscriberRecipes
+import appeng.client.gui.Icon
 import appeng.core.definitions.AEItems
 import appeng.core.localization.Side
 import appeng.core.localization.Tooltips
@@ -8,6 +10,7 @@ import appeng.menu.SlotSemantics
 import appeng.menu.guisync.GuiSync
 import appeng.menu.implementations.UpgradeableMenu
 import appeng.menu.interfaces.IProgressProvider
+import appeng.menu.slot.AppEngSlot
 import appeng.menu.slot.OutputSlot
 import appeng.menu.slot.RestrictedInputSlot
 import appeng.menu.slot.RestrictedInputSlot.PlacableItemType
@@ -28,23 +31,40 @@ class AdvancedInscriberScreenHandler(id: Int, playerInventory: PlayerInventory, 
     @GuiSync(3)
     var processingTime = -1
 
+    @GuiSync(7)
+    var separateSides = YesNo.NO
+
     init {
         val inv = host.internalInventory
 
         val top = RestrictedInputSlot(PlacableItemType.INSCRIBER_PLATE, inv, 0)
-        top.emptyTooltip = Tooltips.inputSlot(Side.TOP)
+        top.setEmptyTooltip {
+            if (separateSides == YesNo.YES) Tooltips.inputSlot(Side.TOP)
+            else Tooltips.inputSlot(Side.ANY)
+        }
         this.top = this.addSlot(top, SlotSemantics.INSCRIBER_PLATE_TOP)
 
-        val bottom = RestrictedInputSlot(PlacableItemType.INSCRIBER_PLATE, inv, 1)
-        bottom.emptyTooltip = Tooltips.inputSlot(Side.BOTTOM)
+        val bottom = AppEngSlot(inv, 1)
+        bottom.icon = Icon.BACKGROUND_PLATE
+        bottom.setEmptyTooltip {
+            if (separateSides == YesNo.YES) Tooltips.inputSlot(Side.BOTTOM)
+            else Tooltips.inputSlot(Side.ANY)
+        }
         this.bottom = this.addSlot(bottom, SlotSemantics.INSCRIBER_PLATE_BOTTOM)
 
-        val middle = RestrictedInputSlot(PlacableItemType.INSCRIBER_INPUT, inv, 2)
-        middle.emptyTooltip = Tooltips.inputSlot(Side.LEFT, Side.RIGHT, Side.BACK, Side.FRONT)
+        val middle = AppEngSlot(inv, 2)
+        middle.icon = Icon.BACKGROUND_INGOT
+        middle.setEmptyTooltip {
+            if (separateSides == YesNo.YES) Tooltips.inputSlot(Side.LEFT, Side.RIGHT, Side.BACK, Side.FRONT)
+            else Tooltips.inputSlot(Side.ANY)
+        }
         this.middle = this.addSlot(middle, SlotSemantics.MACHINE_INPUT)
 
         val output = OutputSlot(inv, 3, null)
-        output.emptyTooltip = Tooltips.outputSlot(Side.LEFT, Side.RIGHT, Side.BACK, Side.FRONT)
+        output.setEmptyTooltip {
+            if (separateSides == YesNo.YES) Tooltips.outputSlot(Side.LEFT, Side.RIGHT, Side.BACK, Side.FRONT)
+            else Tooltips.outputSlot(Side.ANY)
+        }
         this.addSlot(output, SlotSemantics.MACHINE_OUTPUT)
     }
 

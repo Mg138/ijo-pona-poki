@@ -14,7 +14,7 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 import org.quiltmc.qsl.block.extensions.api.QuiltBlockSettings
 
-object CrystalGrowthBlock : AEBaseEntityBlock<CrystalGrowthBlockEntity>(QuiltBlockSettings.copyOf(AEBlocks.QUARTZ_GROWTH_ACCELERATOR.block())) {
+object CrystalGrowthBlock : AEBaseEntityBlock<CrystalGrowthBlockEntity>(QuiltBlockSettings.copyOf(AEBlocks.GROWTH_ACCELERATOR.block())) {
     override fun onActivated(
         world: World,
         pos: BlockPos,
