@@ -10,8 +10,9 @@ import it.unimi.dsi.fastutil.objects.Object2LongOpenHashMap
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.nbt.NbtList
 import net.minecraft.nbt.NbtLongArray
+import net.minecraft.registry.Registries
 import net.minecraft.util.Identifier
-import net.minecraft.util.registry.Registry
+import net.minecraft.registry.Registry
 import kotlin.math.min
 
 typealias Inventory = Object2LongMap<AEKey>
@@ -31,7 +32,7 @@ class DISKCellIStorage(val item: DISKCellItem, private val inventory: Inventory)
         fun fromNbt(nbt: NbtCompound): DISKCellIStorage? {
             val item = nbt.getString(this.DISK_ID)
                           .let(Identifier::tryParse)
-                          .let { Registry.ITEM.get(it) as? DISKCellItem }
+                          .let { Registries.ITEM.get(it) as? DISKCellItem }
                           ?: return null
 
             val inv = emptyInv()
@@ -60,7 +61,7 @@ class DISKCellIStorage(val item: DISKCellItem, private val inventory: Inventory)
     }
 
     fun writeNbt(nbt: NbtCompound): Boolean {
-        val id = Registry.ITEM.getId(this.item.asItem())
+        val id = Registries.ITEM.getId(this.item.asItem())
         val keys = NbtList()
         val amounts = AmountList(this.inventory.size)
 

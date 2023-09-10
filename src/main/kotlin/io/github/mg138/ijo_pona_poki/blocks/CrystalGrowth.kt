@@ -9,9 +9,10 @@ import io.github.mg138.ijo_pona_poki.IjoPonaPoki
 import io.github.mg138.ijo_pona_poki.IjoPonaPoki.defaultSettings
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage
 import net.minecraft.block.entity.BlockEntityType
+import net.minecraft.registry.Registries
 import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.util.Identifier
-import net.minecraft.util.registry.Registry
+import net.minecraft.registry.Registry
 import org.quiltmc.qsl.block.entity.api.QuiltBlockEntityTypeBuilder
 
 @Suppress("UnstableApiUsage")
@@ -22,7 +23,7 @@ object CrystalGrowth {
 
     val BLOCK_ENTITY: BlockEntityType<CrystalGrowthBlockEntity>
         = Registry.register(
-            Registry.BLOCK_ENTITY_TYPE,
+            Registries.BLOCK_ENTITY_TYPE,
             this.ID,
             QuiltBlockEntityTypeBuilder.create(::CrystalGrowthBlockEntity, CrystalGrowthBlock).build()
         )
@@ -33,14 +34,14 @@ object CrystalGrowth {
             .build(this.crystal_growth)
 
     init {
-        Registry.register(Registry.BLOCK, this.ID, CrystalGrowthBlock)
-        Registry.register(Registry.ITEM, this.ID, AEBaseBlockItem(CrystalGrowthBlock, defaultSettings()))
+        Registry.register(Registries.BLOCK, this.ID, CrystalGrowthBlock)
+        Registry.register(Registries.ITEM, this.ID, AEBaseBlockItem(CrystalGrowthBlock, defaultSettings()))
 
         CrystalGrowthBlock.setBlockEntity(CrystalGrowthBlockEntity::class.java, this.BLOCK_ENTITY, null, null)
         FluidStorage.SIDED.registerSelf(this.BLOCK_ENTITY)
 
         Registry.register(
-            Registry.SCREEN_HANDLER,
+            Registries.SCREEN_HANDLER_TYPE,
             this.SCREEN_ID,
             this.SCREEN_HANDLER
         )

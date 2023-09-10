@@ -18,7 +18,7 @@
 
 package io.github.mg138.ijo_pona_poki.blocks;
 
-import appeng.client.render.FacingToRotation;
+import appeng.api.orientation.BlockOrientation;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import appeng.recipes.handlers.InscriberProcessType;
@@ -37,7 +37,6 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Quaternion;
 import net.minecraft.util.random.RandomGenerator;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
 
@@ -62,8 +61,8 @@ public final class AdvancedInscriberTESR implements BlockEntityRenderer<Advanced
 
         ms.push();
         ms.translate(0.5F, 0.5F, 0.5F);
-        FacingToRotation orientation = FacingToRotation.get(blockEntity.getForward(), blockEntity.getUp());
-        ms.multiply(orientation.getRot());
+        BlockOrientation orientation = BlockOrientation.get(blockEntity.getFront(), blockEntity.getTop());
+        ms.multiply(orientation.getQuaternion());
         ms.translate(-0.5F, -0.5F, -0.5F);
 
         // render sides of stamps

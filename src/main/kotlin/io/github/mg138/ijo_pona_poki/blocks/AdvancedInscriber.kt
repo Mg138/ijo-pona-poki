@@ -8,9 +8,10 @@ import appeng.menu.implementations.MenuTypeBuilder
 import io.github.mg138.ijo_pona_poki.IjoPonaPoki
 import io.github.mg138.ijo_pona_poki.IjoPonaPoki.defaultSettings
 import net.minecraft.block.entity.BlockEntityType
+import net.minecraft.registry.Registries
+import net.minecraft.registry.Registry
 import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.util.Identifier
-import net.minecraft.util.registry.Registry
 import org.quiltmc.qsl.block.entity.api.QuiltBlockEntityTypeBuilder
 
 object AdvancedInscriber {
@@ -20,7 +21,7 @@ object AdvancedInscriber {
 
     val BLOCK_ENTITY: BlockEntityType<AdvancedInscriberBlockEntity>
         = Registry.register(
-            Registry.BLOCK_ENTITY_TYPE,
+            Registries.BLOCK_ENTITY_TYPE,
             this.ID,
             QuiltBlockEntityTypeBuilder.create(::AdvancedInscriberBlockEntity, AdvancedInscriberBlock).build()
         )
@@ -31,13 +32,13 @@ object AdvancedInscriber {
             .build(this.advanced_inscriber)
 
     init {
-        Registry.register(Registry.BLOCK, this.ID, AdvancedInscriberBlock)
-        Registry.register(Registry.ITEM, this.ID, AEBaseBlockItem(AdvancedInscriberBlock, defaultSettings()))
+        Registry.register(Registries.BLOCK, this.ID, AdvancedInscriberBlock)
+        Registry.register(Registries.ITEM, this.ID, AEBaseBlockItem(AdvancedInscriberBlock, defaultSettings()))
 
         AdvancedInscriberBlock.setBlockEntity(AdvancedInscriberBlockEntity::class.java, this.BLOCK_ENTITY, null, null)
 
         Registry.register(
-            Registry.SCREEN_HANDLER,
+            Registries.SCREEN_HANDLER_TYPE,
             this.SCREEN_ID,
             this.SCREEN_HANDLER
         )

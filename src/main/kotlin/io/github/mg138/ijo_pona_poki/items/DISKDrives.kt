@@ -6,7 +6,8 @@ import appeng.menu.me.common.MEStorageMenu
 import io.github.mg138.ijo_pona_poki.IjoPonaPoki.defaultSettings
 import io.github.mg138.ijo_pona_poki.IjoPonaPoki.id
 import net.minecraft.item.Item
-import net.minecraft.util.registry.Registry
+import net.minecraft.registry.Registries
+import net.minecraft.registry.Registry
 import org.quiltmc.qsl.item.setting.api.QuiltItemSettings
 
 
@@ -14,7 +15,7 @@ object DISKDrives {
     private fun String.model() = id("model/drive/cells/$this")
 
     private fun item(name: String, item: Item): Item {
-        return Registry.register(Registry.ITEM, id(name), item)
+        return Registry.register(Registries.ITEM, id(name), item)
     }
     private fun diskCell(name: String, item: DISKDrive): Item {
         StorageCellModels.registerModel(item, name.model())
